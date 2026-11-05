@@ -6,6 +6,8 @@ argument-hint: "[spec path | issue number]"
 
 # Break a spec into issues
 
+> **Cloud sessions:** GitHub GraphQL is blocked there, so the `gh issue`/`gh pr`/`gh label list` commands below need their REST forms. See [github-cli.md](../../../docs/agentic/github-cli.md).
+
 Input: `$ARGUMENTS`, a `docs/specs/…` path or an epic issue number. The spec must be `Approved`. If it
 isn't, stop and suggest `/spec`.
 

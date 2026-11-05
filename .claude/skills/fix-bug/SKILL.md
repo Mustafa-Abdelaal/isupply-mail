@@ -6,6 +6,8 @@ argument-hint: "[issue number | bug description]"
 
 # Fix a bug (reproduce → root cause → regression test → fix)
 
+> **Cloud sessions:** GitHub GraphQL is blocked there, so the `gh issue`/`gh pr`/`gh label list` commands below need their REST forms. See [github-cli.md](../../../docs/agentic/github-cli.md).
+
 Input: `$ARGUMENTS`. If it's an issue number, run `gh issue view <n> --comments`.
 
 ## 1. Reproduce before touching code

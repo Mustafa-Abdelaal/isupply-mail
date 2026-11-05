@@ -85,6 +85,7 @@ Every hook rule has a test in `scripts/tests/test_hooks.py`.
   Pick issues that `/breakdown` marked as parallelizable.
 - **Cloud sessions** (claude.ai/code): the SessionStart hook runs `scripts/setup`. Commit and push
   often, because containers are ephemeral (`/handoff`).
+- **GitHub CLI in cloud sessions**: GraphQL is blocked, so use the REST forms in [github-cli.md](github-cli.md).
 - **GitHub**: `@claude` in issues and PRs (`.github/workflows/claude.yml`), automatic PR review
   (`claude-review.yml`), automatic triage (`claude-triage.yml`).
 

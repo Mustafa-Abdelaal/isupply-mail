@@ -6,6 +6,8 @@ argument-hint: "[issue number]"
 
 # Implement an issue end to end
 
+> **Cloud sessions:** GitHub GraphQL is blocked there, so the `gh issue`/`gh pr`/`gh label list` commands below need their REST forms. See [github-cli.md](../../../docs/agentic/github-cli.md).
+
 Branch: !`git branch --show-current 2>/dev/null || true`
 Uncommitted: !`git status --short 2>/dev/null | head -20 || true`
 Stack: !`grep -m1 -E '^- \*\*Status:\*\*' docs/decisions/0002-technology-stack.md 2>/dev/null || true`

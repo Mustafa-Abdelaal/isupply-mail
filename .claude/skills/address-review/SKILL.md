@@ -6,6 +6,8 @@ argument-hint: "[PR number]"
 
 # Address PR review feedback
 
+> **Cloud sessions:** GitHub GraphQL is blocked there, so the `gh issue`/`gh pr`/`gh label list` commands below need their REST forms. See [github-cli.md](../../../docs/agentic/github-cli.md).
+
 PR: `$ARGUMENTS`. With no number, use the PR for the current branch (`gh pr view --json number`).
 
 ## 1. Fetch the open feedback

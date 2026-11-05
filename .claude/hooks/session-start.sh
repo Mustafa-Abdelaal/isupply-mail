@@ -25,6 +25,10 @@ if [ "${CLAUDE_CODE_REMOTE:-}" = "true" ] && [ "$source_kind" = "startup" ] && [
   fi
 fi
 
+if [ "${CLAUDE_CODE_REMOTE:-}" = "true" ]; then
+  add "- Cloud session: GitHub GraphQL is unavailable, so gh issue/pr/label-list subcommands fail; REST equivalents are in docs/agentic/github-cli.md."
+fi
+
 # --- Git position -----------------------------------------------------------------------
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   branch="$(git branch --show-current 2>/dev/null || true)"

@@ -6,6 +6,8 @@ argument-hint: "[issue number] [--draft]"
 
 # Open a pull request
 
+> **Cloud sessions:** GitHub GraphQL is blocked there, so the `gh issue`/`gh pr`/`gh label list` commands below need their REST forms. See [github-cli.md](../../../docs/agentic/github-cli.md).
+
 Branch: !`git branch --show-current 2>/dev/null || true`
 Commits ahead of main:
 !`git log --oneline origin/main..HEAD 2>/dev/null | head -30 || true`

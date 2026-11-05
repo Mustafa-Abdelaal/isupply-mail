@@ -8,4 +8,4 @@
 | Security | [Threat model](security/threat-model.md) |
 | Testing | [Strategy](testing/strategy.md) · [Email fixtures](../fixtures/email/README.md) · [Dev mail server](../infra/dev-mail/README.md) |
 | Work in progress | [Specs](specs/README.md) · [Plans](plans/README.md) |
-| How we work | [Agentic workflow](agentic/README.md) · [Contributing](../CONTRIBUTING.md) · [Scripts](../scripts/README.md) |
+| How we work | [Agentic workflow](agentic/README.md) · [GitHub CLI from agents](agentic/github-cli.md) · [Contributing](../CONTRIBUTING.md) · [Scripts](../scripts/README.md) |

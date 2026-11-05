@@ -6,6 +6,8 @@ argument-hint: "[issue number | --all] [--apply]"
 
 # Triage issues
 
+> **Cloud sessions:** GitHub GraphQL is blocked there, so the `gh issue`/`gh pr`/`gh label list` commands below need their REST forms. See [github-cli.md](../../../docs/agentic/github-cli.md).
+
 Arguments: `$ARGUMENTS`. With `--all`, take the open issues without a `triage:done` label
 (`gh issue list --search "-label:triage:done" --limit 30 --json number,title`). Without `--apply`,
 propose labels and comments but don't write anything.

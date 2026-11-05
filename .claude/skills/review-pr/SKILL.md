@@ -6,6 +6,8 @@ argument-hint: "[PR number] [--post]"
 
 # Review a change with specialist subagents
 
+> **Cloud sessions:** GitHub GraphQL is blocked there, so the `gh issue`/`gh pr`/`gh label list` commands below need their REST forms. See [github-cli.md](../../../docs/agentic/github-cli.md).
+
 Arguments: `$ARGUMENTS`. With no PR number, review the current branch against `origin/main`.
 
 ## 1. Collect the change

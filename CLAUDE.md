@@ -66,4 +66,6 @@ in `scripts/tests/test_hooks.py`.
 - **Keep context lean.** Send broad searches to `Explore` and reviews to subagents, then summarize.
 - **Make lessons stick.** When the user corrects you, or a mistake escapes, run `/codify-lesson`.
 - **Leave a trail.** Before stopping mid-task, or when context gets large, run `/handoff`.
+- **GitHub in cloud sessions**: GraphQL is blocked there, so `gh issue`/`gh pr`/`gh label list` fail. Use the
+  REST forms in [docs/agentic/github-cli.md](docs/agentic/github-cli.md).
 - **Personal preferences** go in `CLAUDE.local.md` (git-ignored), not here.

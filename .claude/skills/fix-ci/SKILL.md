@@ -6,6 +6,8 @@ argument-hint: "[PR number | run id]"
 
 # Fix failing CI
 
+> **Cloud sessions:** GitHub GraphQL is blocked there, so the `gh issue`/`gh pr`/`gh label list` commands below need their REST forms. See [github-cli.md](../../../docs/agentic/github-cli.md).
+
 ## 1. Find the failure
 
 ```bash
