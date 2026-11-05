@@ -1,6 +1,6 @@
 # iSupply Mail
 
-A zero-configuration email app for iSupply staff (`@isupply.com`) on **Web, Windows, macOS, Linux,
+A zero-configuration email app for iSupply staff (`@isupply.com.eg`) on **Web, Windows, macOS, Linux,
 Android and iOS**. Staff sign in with their work address and password, and everything else is set up
 for them.
 

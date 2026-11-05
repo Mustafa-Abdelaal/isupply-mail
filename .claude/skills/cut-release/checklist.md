@@ -7,7 +7,7 @@ workflow names.
 
 - [ ] `scripts/check --full` green on the release commit
 - [ ] Fixture conformance suite green in the app (not just the reference parser)
-- [ ] Smoke test against the dev server **and** a real `@isupply.com` test account: sign-in, sync,
+- [ ] Smoke test against the dev server **and** a real `@isupply.com.eg` test account: sign-in, sync,
       read HTML, send with attachment, search, notifications
 - [ ] No debug logging, test endpoints or dev credentials in release builds
 - [ ] Crash and analytics reporting strips PII (no addresses, subjects or bodies)

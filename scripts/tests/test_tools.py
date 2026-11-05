@@ -77,7 +77,7 @@ class DiscoverParsingTest(unittest.TestCase):
     def test_provider_fingerprints(self) -> None:
         self.assertEqual(discover.provider_for_mx(["isupply-com.mail.protection.outlook.com"])[0], "microsoft-365")
         self.assertEqual(discover.provider_for_mx(["aspmx.l.google.com"])[0], "google-workspace")
-        self.assertIsNone(discover.provider_for_mx(["mail.isupply.com"]))
+        self.assertIsNone(discover.provider_for_mx(["mail.isupply.com.eg"]))
 
 
 class InspectCliTest(unittest.TestCase):

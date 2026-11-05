@@ -5,7 +5,7 @@ repository. Claude Code loads this file through `CLAUDE.md`, which adds Claude-s
 
 ## What we are building
 
-**iSupply Mail** is an email client for iSupply staff (`@isupply.com`). The whole point is **zero
+**iSupply Mail** is an email client for iSupply staff (`@isupply.com.eg`). The whole point is **zero
 configuration**: a staff member signs in with their work address and password and gets a working
 mailbox. Servers, folders, signature and security settings are provisioned for them, so nobody has to
 fight Outlook settings again. Targets: **Web, Windows, macOS, Linux, Android, iOS**.

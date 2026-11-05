@@ -17,7 +17,7 @@ RFC 4954 (AUTH) and RFC 6531 (SMTPUTF8).
 
 - **Headers**: `From` (the authenticated user's address; servers may reject "send as" other
   addresses), `To`/`Cc`, `Subject`, a `Date` with timezone offset, a `Message-ID` on our domain
-  (`<random@isupply.com>`), `MIME-Version`, and for replies `In-Reply-To` plus `References` (the
+  (`<random@isupply.com.eg>`), `MIME-Version`, and for replies `In-Reply-To` plus `References` (the
   parent's References followed by the parent's Message-ID).
 - **Bcc goes in the envelope only.** Add the Bcc recipients to `RCPT TO` and strip the `Bcc:` header from
   the transmitted message. The copy saved to Sent may keep the Bcc header so the user can see it.
@@ -54,6 +54,6 @@ RFC 4954 (AUTH) and RFC 6531 (SMTPUTF8).
 
 ## Deliverability (company-level, not client code)
 
-SPF, DKIM and DMARC for `isupply.com` are configured by IT on the DNS and mail server. The client must
+SPF, DKIM and DMARC for `isupply.com.eg` are configured by IT on the DNS and mail server. The client must
 send through the company's submission server with the user's own address in `From`, or messages will
 fail DMARC at recipients. List them in the server profile (`docs/domain/server-profiles/`).

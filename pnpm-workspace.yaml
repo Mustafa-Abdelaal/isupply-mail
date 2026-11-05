@@ -1,0 +1,26 @@
+packages:
+  - apps/web
+  - apps/desktop
+  - apps/mobile
+
+# Shared versions: packages used by more than one workspace reference `catalog:` so they never drift.
+# The web app imports the Capacitor plugins' JS APIs; apps/mobile needs the same packages for `cap sync`.
+catalog:
+  '@aparajita/capacitor-secure-storage': ^8.0.1
+  '@capacitor/app': ^8.1.2
+  '@capacitor/browser': ^8.0.5
+  '@capacitor/core': ^8.6.0
+  '@capacitor/filesystem': ^8.1.5
+  '@capacitor/keyboard': ^8.0.6
+  '@capacitor/network': ^8.0.1
+  '@capacitor/preferences': ^8.0.1
+  '@capacitor/push-notifications': ^8.1.3
+  '@capacitor/share': ^8.0.3
+  '@capacitor/status-bar': ^8.0.4
+  '@types/node': ^24.0.0
+  typescript: ~6.0.3
+
+# Packages allowed to run install scripts (pnpm blocks all others by default).
+onlyBuiltDependencies:
+  - electron
+  - esbuild

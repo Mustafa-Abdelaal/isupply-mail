@@ -100,5 +100,5 @@ right, and the ways real servers deviate. Check the **Server matrix** before rel
 | Auth | PLAIN/LOGIN | PLAIN/LOGIN | OAuth2 only | OAuth2 (or app password) |
 
 The GreenMail column was verified in this repo (`scripts/email/probe_server.py` against `scripts/dev-mail`).
-The other columns hold typical values; verify them against the actual `@isupply.com` server with
+The other columns hold typical values; verify them against the actual `@isupply.com.eg` server with
 `/discover-mail-server`.

@@ -7,8 +7,10 @@ new ADR that supersedes the old one.
 | ADR | Title | Status |
 |---|---|---|
 | [0001](0001-record-architecture-decisions.md) | Record architecture decisions | Accepted |
-| [0002](0002-technology-stack.md) | Technology stack | **Proposed — pending discussion** |
+| [0002](0002-technology-stack.md) | Technology stack | Accepted |
 | [0003](0003-agent-first-repository-conventions.md) | Agent-first repository conventions | Accepted |
+| [0004](0004-server-side-mail-engine.md) | Server-side mail engine (sync, operation log, outbox, push) | Accepted |
+| [0005](0005-authentication-and-credential-custody.md) | Authentication, client sessions and credential custody | Accepted |
 
 Template: [template.md](template.md). The status values are Proposed, Accepted, Rejected, Deprecated
 and Superseded.

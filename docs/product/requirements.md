@@ -1,6 +1,6 @@
 # Requirements (draft)
 
-Status: **draft**, to be refined during the stack discussion and through `/spec`. IDs are stable;
+Status: **draft**, refined through `/spec`. The stack is decided ([ADR-0002](../decisions/0002-technology-stack.md)). IDs are stable;
 specs and ADRs reference them. Priority: **M** = MVP, **N** = next, **L** = later.
 
 ## Functional
@@ -25,10 +25,12 @@ specs and ADRs reference them. Priority: **M** = MVP, **N** = next, **L** = late
 | R-16 | Shared mailboxes / multiple accounts | N |
 | R-17 | Contacts: company directory (GAL) lookup and recent recipients | N |
 | R-18 | Calendar invite responses (accept/decline) | N |
-| R-19 | Rules/filters, vacation responder (if the server supports Sieve/managesieve) | L |
+| R-19 | Message filters (Thunderbird-style rules: conditions on from/to/subject/body/size/attachments; move, mark, flag, junk, delete), run on arrival server-side and on demand | M |
 | R-20 | Admin: revoke device/session, remote wipe of local cache, minimum app version | N |
 | R-21 | `mailto:` handling and OS share-to-email integration | N |
 | R-22 | S/MIME or PGP signed/encrypted mail | L |
+| R-23 | Junk filtering: honor server spam headers, an adaptive classifier trained by Junk / Not junk, sender block and allow lists | M |
+| R-24 | Vacation responder (if the server supports Sieve/managesieve) | L |
 
 ## Non-functional
 
@@ -53,5 +55,5 @@ specs and ADRs reference them. Priority: **M** = MVP, **N** = next, **L** = late
   ([architecture](../architecture/overview.md)).
 - Mobile OSes do not keep IMAP connections alive in the background, so **push notifications require a
   server component** that watches mailboxes or receives server events.
-- The mail server and protocols available for `@isupply.com` are not yet confirmed
+- The mail server and protocols available for `@isupply.com.eg` are not yet confirmed
   ([open questions](open-questions.md)). They decide much of the architecture.

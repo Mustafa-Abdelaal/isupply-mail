@@ -31,7 +31,7 @@ from email.message import Message
 from email.parser import BytesParser
 from pathlib import Path
 
-INTERNAL_DOMAINS = {"isupply.com", "isupply.test"}
+INTERNAL_DOMAINS = {"isupply.com.eg", "isupply.com", "isupply.test"}
 DROP_HEADERS = {
     "received", "dkim-signature", "x-google-dkim-signature", "arc-seal", "arc-message-signature",
     "arc-authentication-results", "authentication-results", "received-spf", "x-originating-ip",
@@ -62,7 +62,7 @@ class Anonymizer:
     def address(self, addr: str) -> str:
         local, _, domain = addr.rpartition("@")
         domain = domain.lower()
-        if domain in INTERNAL_DOMAINS or domain.endswith(".isupply.com"):
+        if domain in INTERNAL_DOMAINS or domain.endswith((".isupply.com.eg", ".isupply.com")):
             return f"user-{self._h(addr)}@isupply.test"
         tld = "org" if int(self._h(domain), 16) % 2 else "com"
         return f"user-{self._h(addr)}@example.{tld}"

@@ -1,13 +1,14 @@
 # Open questions
 
-Answer these before or during the stack decision ([ADR-0002](../decisions/0002-technology-stack.md)).
+The stack is decided ([ADR-0002](../decisions/0002-technology-stack.md)); these answers now tune
+configuration and later ADRs rather than the stack.
 Once a question is answered, move the answer into [requirements](requirements.md) or an ADR, and
 strike the line through here.
 
 ## Mail server (highest impact)
 
-1. **Where is `@isupply.com` hosted?** cPanel or shared hosting, Google Workspace, Microsoft 365, Zoho,
-   or self-hosted? Run `python3 scripts/email/discover.py isupply.com` from a normal network (DNS is
+1. **Where is `@isupply.com.eg` hosted?** cPanel or shared hosting, Google Workspace, Microsoft 365, Zoho,
+   or self-hosted? Run `python3 scripts/email/discover.py isupply.com.eg` from a normal network (DNS is
    blocked in sandboxed sessions) and record the result with `/discover-mail-server`.
 2. Which protocols does it offer: IMAP and SMTP only, or JMAP, Exchange ActiveSync, Microsoft Graph?
 3. Which IMAP extensions are there (IDLE, CONDSTORE/QRESYNC, SPECIAL-USE, MOVE, COMPRESS)? Are there
@@ -34,8 +35,20 @@ strike the line through here.
 
 ## Operations and budget
 
-14. Is a small backend acceptable (web gateway, push relay, provisioning)? Where would it run (cloud
-    provider, region, data residency), and what's the hosting budget?
+14. ~~Is a small backend acceptable?~~ Yes: the backend is the mail engine
+    ([ADR-0002](../decisions/0002-technology-stack.md)). **Still open:** where it runs (cloud provider,
+    region, data residency) and the hosting budget.
 15. Who operates it (on-call), and who owns Apple/Google developer accounts and code-signing
-    certificates?
-16. What is the team's existing expertise, and who will maintain the app long-term?
+    certificates? Push needs a Firebase project (FCM service account) and an Apple APNs key; the
+    backend runs without them, with push turned off.
+16. ~~What is the team's existing expertise?~~ Laravel and React (owner, 2026-11-05). **Still open:**
+    who maintains the app long-term.
+
+## Questions for IT created by the server-side design
+
+17. Can IT allow the backend server's IP in the mail host's brute-force protection (cPHulk or
+    fail2ban)? Every staff sign-in and sync arrives from that one IP ([ADR-0004](../decisions/0004-server-side-mail-engine.md)).
+18. What are the host's IMAP connection limits per user and per IP? The backend uses at most two
+    connections per account (one IDLE watcher, one worker).
+19. Does the host save sent mail into Sent by itself? (Most cPanel hosts don't; Microsoft 365 and
+    Gmail do.) The backend appends to Sent unless told otherwise (`MAIL_SMTP_SAVES_SENT`).

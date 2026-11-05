@@ -1,0 +1,19 @@
+# Prettier formats TypeScript/JavaScript/CSS/JSON/YAML in the JS workspaces only.
+# Docs are hand-written; fixtures are byte-exact; the PHP app has its own formatter (Pint).
+*.md
+fixtures/
+docs/
+apps/api/
+apps/mobile/android/
+apps/mobile/ios/
+**/dist/
+**/dist-electron/
+**/release/
+**/coverage/
+**/playwright-report/
+**/test-results/
+pnpm-lock.yaml
+.claude/
+.github/
+infra/
+scripts/

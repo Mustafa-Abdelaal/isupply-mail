@@ -59,3 +59,16 @@ desktop.ini
 # STACK: application build outputs are added here by /bootstrap-stack
 # (e.g. build/, dist/, .dart_tool/, node_modules/, target/, android/.gradle/).
 # ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Application build outputs (stack bootstrap in progress — see HANDOVER.md)
+# ---------------------------------------------------------------------------
+node_modules/
+**/dist/
+**/dist-electron/
+**/release/
+**/coverage/
+**/playwright-report/
+**/test-results/
+*.tsbuildinfo
+.phpunit.cache/

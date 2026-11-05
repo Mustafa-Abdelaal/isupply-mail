@@ -43,7 +43,7 @@ zero active content**. Security wins over fidelity whenever they conflict.
 
 - Show the real link target on hover or long-press, and warn when the link text shows a different
   host than the href (fixture 011). Check against the Public Suffix List.
-- Show an external-sender banner when `From` isn't `@isupply.com` but the display name, signature or
+- Show an external-sender banner when `From` isn't `@isupply.com.eg` but the display name, signature or
   reply-to imitates an internal sender.
 - Flag lookalike domains (`isupp1y.com`, IDN homographs) and `Reply-To` that differs from `From` on
   first contact.

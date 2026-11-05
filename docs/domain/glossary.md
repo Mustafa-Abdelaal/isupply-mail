@@ -29,7 +29,7 @@
 | **Modified UTF-7** | IMAP's encoding for non-ASCII mailbox names (RFC 3501 §5.1.3) |
 | **MODSEQ** | Per-message modification sequence (CONDSTORE) |
 | **Outbox** | Durable local queue of messages waiting to be sent |
-| **Provisioning profile** | Centrally managed settings for `@isupply.com` (servers, auth, signature, flags) |
+| **Provisioning profile** | Centrally managed settings for `@isupply.com.eg` (servers, auth, signature, flags) |
 | **RFC 2231** | Encoding for non-ASCII MIME parameter values (filenames), with continuations |
 | **RTL** | Right-to-left layout (Arabic) |
 | **Sanitizer** | Allowlist-based HTML cleaner run before rendering |

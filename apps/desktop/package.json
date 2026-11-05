@@ -1,0 +1,23 @@
+{
+  "name": "@isupply/desktop",
+  "private": true,
+  "version": "0.1.0",
+  "description": "iSupply Mail desktop app (Electron shell around the web build in apps/web/dist).",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit --pretty false",
+    "test": "node --test dist-electron/*.test.js",
+    "start": "pnpm run build && electron .",
+    "package": "pnpm run build && electron-builder --config electron-builder.yml --publish never"
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.11"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "electron": "^45.2.3",
+    "electron-builder": "^26.18.0",
+    "typescript": "catalog:"
+  }
+}

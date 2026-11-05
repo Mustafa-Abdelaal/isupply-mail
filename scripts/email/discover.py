@@ -2,7 +2,7 @@
 """Discover IMAP/SMTP (and JMAP) settings for an email domain — research tool for zero-config login.
 
 Usage:
-  python3 scripts/email/discover.py isupply.com [--email someone@isupply.com] [--json] [--timeout 8]
+  python3 scripts/email/discover.py isupply.com.eg [--email someone@isupply.com.eg] [--json] [--timeout 8]
 
 Sources, most trusted first:
   1. Domain-published autoconfig XML (https://autoconfig.<domain>/..., /.well-known/autoconfig/...)
@@ -13,7 +13,7 @@ Sources, most trusted first:
 
 DNS: uses dnspython or `dig` when available, else DNS-over-HTTPS (Google/Cloudflare JSON API).
 Results are *candidates*: verify with scripts/email/probe_server.py before baking them into the app.
-See docs/domain/discovery-and-auth.md for how the app itself should provision @isupply.com.
+See docs/domain/discovery-and-auth.md for how the app itself should provision @isupply.com.eg.
 """
 
 from __future__ import annotations

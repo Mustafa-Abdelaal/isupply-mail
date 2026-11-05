@@ -1,12 +1,12 @@
 ---
 name: discover-mail-server
-description: Work out and verify mail server settings for a domain (default isupply.com) — autoconfig, Thunderbird ISPDB, DNS SRV/MX, provider fingerprint, then TLS/capability/auth probing — and record a server profile in docs/domain/server-profiles/. Use for zero-config provisioning work, provider questions, or when login/connection fails.
+description: Work out and verify mail server settings for a domain (default isupply.com.eg) — autoconfig, Thunderbird ISPDB, DNS SRV/MX, provider fingerprint, then TLS/capability/auth probing — and record a server profile in docs/domain/server-profiles/. Use for zero-config provisioning work, provider questions, or when login/connection fails.
 argument-hint: "[domain]"
 ---
 
 # Discover and verify mail server settings
 
-Domain: `$ARGUMENTS` (default `isupply.com`). Background reading:
+Domain: `$ARGUMENTS` (default `isupply.com.eg`). Background reading:
 [discovery-and-auth.md](../../../docs/domain/discovery-and-auth.md).
 
 ## 1. Discover candidates
@@ -51,5 +51,5 @@ pattern** (`%EMAILADDRESS%`).
 
 - Capabilities that matter for architecture (no CONDSTORE, OAuth-only, connection caps) get recorded
   in `docs/product/open-questions.md` and, once decided, in an ADR.
-- The provisioning config the app ships for `@isupply.com` must match this profile. Mention that in the
+- The provisioning config the app ships for `@isupply.com.eg` must match this profile. Mention that in the
   PR that changes either one.

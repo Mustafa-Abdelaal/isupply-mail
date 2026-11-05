@@ -2,7 +2,7 @@
 
 ## The problem
 
-iSupply staff have `@isupply.com` mailboxes, but using them is painful. Setting up Outlook (or the
+iSupply staff have `@isupply.com.eg` mailboxes, but using them is painful. Setting up Outlook (or the
 phone's mail app) means typing server names, ports and security settings. Staff get them wrong, IT
 spends time on every new hire and every new phone, and some people give up and forward work mail to
 personal accounts. That last habit is a security and compliance problem.

@@ -1,0 +1,33 @@
+{
+  "name": "@isupply/mobile",
+  "private": true,
+  "version": "0.1.0",
+  "description": "iSupply Mail Android and iOS apps (Capacitor shell around the web build in apps/web/dist).",
+  "scripts": {
+    "sync": "cap sync",
+    "android": "cap run android",
+    "ios": "cap run ios",
+    "open:android": "cap open android",
+    "open:ios": "cap open ios",
+    "typecheck": "tsc -p tsconfig.json --noEmit --pretty false"
+  },
+  "dependencies": {
+    "@aparajita/capacitor-secure-storage": "catalog:",
+    "@capacitor/android": "^8.6.0",
+    "@capacitor/app": "catalog:",
+    "@capacitor/browser": "catalog:",
+    "@capacitor/core": "catalog:",
+    "@capacitor/filesystem": "catalog:",
+    "@capacitor/ios": "^8.6.0",
+    "@capacitor/keyboard": "catalog:",
+    "@capacitor/network": "catalog:",
+    "@capacitor/preferences": "catalog:",
+    "@capacitor/push-notifications": "catalog:",
+    "@capacitor/share": "catalog:",
+    "@capacitor/status-bar": "catalog:"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.6.0",
+    "typescript": "catalog:"
+  }
+}

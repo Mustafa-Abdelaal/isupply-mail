@@ -45,7 +45,7 @@ flowchart LR
 | **App core** | Accounts, provisioning client, sync engine, outbox, MIME parse/compose, threading, search, sanitizer integration | Platform-neutral; the most heavily tested; passes the fixture conformance suite |
 | **Local store** | Message metadata cache, bodies on demand, search index, outbox, drafts | Keyed by (account, mailbox, UIDVALIDITY, UID); migrations versioned; encrypted where the platform allows |
 | **Platform adapters** | Secure storage, notifications, sandboxed HTML view, file save/share, background scheduling, `mailto:` | One interface, one implementation per platform; contract tests |
-| **Provisioning service** | Serves the signed `@isupply.com` profile: hosts, ports, auth method, signature templates, feature flags | Static and versioned; can start as a signed JSON file on HTTPS |
+| **Provisioning service** | Serves the signed `@isupply.com.eg` profile: hosts, ports, auth method, signature templates, feature flags | Static and versioned; can start as a signed JSON file on HTTPS |
 | **Web gateway** | Lets browsers use mail: holds IMAP/SMTP sessions server-side, or exposes JMAP | Crown jewels: credentials encrypted, strict session auth, rate limits, no content logging |
 | **Push relay** | Watches the Inbox per device subscription and sends a content-free push ("new mail") | Holds tokens or credentials, so least privilege; payloads carry no message content |
 

@@ -5,8 +5,8 @@ password, and the app must find the right servers, authenticate safely and store
 
 ## How the app should find server settings (in order)
 
-1. **Central provisioning** (preferred, because we control `isupply.com`): the app ships, or fetches
-   from our backend over HTTPS (signed and versioned), a provisioning profile for `@isupply.com`
+1. **Central provisioning** (preferred, because we control `isupply.com.eg`): the app ships, or fetches
+   from our backend over HTTPS (signed and versioned), a provisioning profile for `@isupply.com.eg`
    containing the IMAP and SMTP hosts, ports and security, the auth method, the signature template,
    feature flags and minimum app version. This is fast, deterministic and lets IT change servers
    without app updates.
@@ -32,7 +32,7 @@ can harvest passwords.
 
 | Method | When | Notes |
 |---|---|---|
-| Password over TLS (SASL PLAIN/LOGIN) | cPanel/shared hosting, self-hosted | Most likely for `@isupply.com`; confirm. Test once at sign-in and show a plain-language error ("wrong password" vs "can't reach server") |
+| Password over TLS (SASL PLAIN/LOGIN) | cPanel/shared hosting, self-hosted | Most likely for `@isupply.com.eg`; confirm. Test once at sign-in and show a plain-language error ("wrong password" vs "can't reach server") |
 | App password | Google/iCloud/Yahoo with 2FA | Explain it in the UI only if relevant |
 | OAuth2 (XOAUTH2 / OAUTHBEARER) | Google Workspace, Microsoft 365 (mandatory there) | Authorization Code + **PKCE** in the **system browser** (never an embedded webview). Store the refresh token in secure storage. Needs app registration with the provider |
 | Kerberos/NTLM | On-prem Exchange | Out of scope unless the open questions say otherwise |
@@ -53,7 +53,7 @@ Sign-out (and admin revoke, R-20) wipes the credentials, tokens and local cache.
 
 | Situation | Say |
 |---|---|
-| Auth failed | "That password didn't work for name@isupply.com. Check it and try again." (plus a "Forgot password?" link per IT policy) |
+| Auth failed | "That password didn't work for name@isupply.com.eg. Check it and try again." (plus a "Forgot password?" link per IT policy) |
 | Server unreachable | "Can't reach the iSupply mail server. Check your internet connection." |
 | TLS failure | "The connection to the mail server isn't secure, so we stopped." Never offer "continue anyway" |
 | Account locked/disabled | "Your account is locked. Contact IT." |
