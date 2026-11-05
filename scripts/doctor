@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# Check the local toolchain and print fix hints. Exit 1 if a required tool is missing.
+#
+# Usage: scripts/doctor [--quiet]
+#   required     git, bash, python3 (repo tooling), jq (Claude Code hooks; python fallback exists)
+#   recommended  gh (GitHub skills), shellcheck
+#   optional     docker (local mail server), actionlint
+#   STACK        application toolchain (added by /bootstrap-stack)
+
+# shellcheck source=lib/common.sh
+source "$(dirname "$0")/lib/common.sh"
+
+QUIET=0
+[ "${1:-}" = "--quiet" ] && QUIET=1
+[ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ] && { usage; exit 0; }
+
+missing_required=0
+report() { # level name ok hint
+  local level="$1" name="$2" ok="$3" hint="$4"
+  if [ "$ok" = 1 ]; then
+    [ "$QUIET" = 1 ] || log_ok "$name"
+  elif [ "$level" = required ]; then
+    log_err "$name (required) — $hint"
+    missing_required=1
+  else
+    log_warn "$name ($level) — $hint"
+  fi
+}
+ok_if() { if "$@" >/dev/null 2>&1; then echo 1; else echo 0; fi; }
+
+report required "git" "$(ok_if have git)" "https://git-scm.com/downloads"
+report required "bash" "1" ""
+report required "python 3.9+" "$(ok_if python_bin)" "macOS: brew install python | Windows: winget install Python.Python.3.12 | Linux: apt install python3"
+report recommended "jq (hook JSON parsing; python fallback is slower)" "$(ok_if have jq)" "brew install jq | winget install jqlang.jq | apt install jq"
+report recommended "gh (GitHub CLI for issue/PR skills)" "$(ok_if have gh)" "https://cli.github.com then: gh auth login"
+report recommended "shellcheck" "$(ok_if have shellcheck)" "brew install shellcheck | winget install koalaman.shellcheck | apt install shellcheck"
+report optional "docker (local mail server: scripts/dev-mail)" "$(ok_if have docker)" "https://docs.docker.com/get-docker/"
+report optional "actionlint (workflow linting)" "$(ok_if have actionlint)" "brew install actionlint"
+
+if [ "$(git -C "$REPO_ROOT" config --get core.hooksPath 2>/dev/null || true)" != ".githooks" ]; then
+  log_warn "git hooks not enabled — run scripts/setup"
+fi
+
+# STACK: check the application toolchain here (versions pinned in ADR-0002), e.g.
+#   report required "flutter 3.x" "$(ok_if have flutter)" "https://docs.flutter.dev/get-started/install"
+#   report required "node 22 + pnpm" "$(ok_if have pnpm)" "corepack enable"
+if ! stack_ready && [ "$QUIET" = 0 ]; then
+  no_stack_note "app toolchain check"
+fi
+
+exit "$missing_required"

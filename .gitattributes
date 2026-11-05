@@ -1,0 +1,26 @@
+# Normalize text to LF in the repository. Shell scripts and hooks MUST stay LF,
+# even on Windows checkouts, or bash fails with "$'\r': command not found".
+* text=auto eol=lf
+
+# Email fixtures are byte-exact test data (CRLF line endings per RFC 5322).
+# Never normalize line endings; still diff them as text for review.
+*.eml -text diff
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.icns binary
+*.pdf binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+
+# Windows-native scripts keep CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf

@@ -1,0 +1,54 @@
+name: Bug report
+description: Something in iSupply Mail is not working as expected
+title: "bug: "
+labels: ["type:bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! Please **do not paste real emails, addresses or screenshots with private content** here.
+        If one specific email shows the problem, tick the box below and the team will ask you for a safe copy.
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Where did it happen?
+      multiple: true
+      options: [Web, Windows, macOS, Linux, Android, iPhone / iPad]
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: Settings → About (or "don't know")
+  - type: input
+    id: device
+    attributes:
+      label: Device and system version
+      placeholder: e.g. Samsung A54, Android 14 / Windows 11 / iPhone 13, iOS 18
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to make it happen again
+      placeholder: "1. Open the Inbox\n2. Tap the message from ...\n3. ..."
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How often?
+      options: [Every time, Sometimes, It happened once]
+  - type: checkboxes
+    id: email
+    attributes:
+      label: Email-specific
+      options:
+        - label: The problem is with one specific email (we'll ask for an anonymized copy — don't attach it here)

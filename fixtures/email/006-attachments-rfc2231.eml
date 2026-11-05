@@ -1,0 +1,40 @@
+From: Mona Adel <mona.adel@isupply.test>
+To: Accounts <accounts@isupply.test>
+Subject: Invoice 117 and updated price list
+Date: Wed, 04 Feb 2026 16:20:00 +0200
+Message-ID: <20260204162000.006@isupply.test>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="b006-mix"
+
+--b006-mix
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Please find attached invoice 117, the updated price list and today's stock levels.
+
+--b006-mix
+Content-Type: application/pdf
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename*=UTF-8''%D9%81%D8%A7%D8%AA%D9%88%D8%B1%D8%A9%20%D8%B1%D9%82%D9%85%20117.pdf
+
+JVBERi0xLjQKJSBzeW50aGV0aWMgZml4dHVyZSAtIG5vdCBhIHJlYWwgZG9jdW1lbnQKMSAwIG9i
+aiA8PCAvVHlwZSAvQ2F0YWxvZyA+PiBlbmRvYmoKdHJhaWxlciA8PCAvUm9vdCAxIDAgUiA+Pgol
+JUVPRgo=
+--b006-mix
+Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;
+ name="=?UTF-8?B?2YLYp9im2YXYqSDYp9mE2KPYs9i52KfYsS54bHN4?="
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="=?UTF-8?B?2YLYp9im2YXYqSDYp9mE2KPYs9i52KfYsS54bHN4?="
+
+UEsDBBQAAAAAAHN5bnRoZXRpYy1vZmZpY2UtZG9jdW1lbnQtcGxhY2Vob2xkZXIAAAAAAAAAAAAA
+AAAAAAAA
+--b006-mix
+Content-Type: text/csv; charset=UTF-8
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename*0*=UTF-8''stock-levels-alexandria-warehouse-;
+ filename*1*=2026-02-04-%D8%A7%D9%84%D9%85%D8%AE%D8%B2%D9%88%D9%86.csv
+
+c2t1LGRlc2NyaXB0aW9uLHF0eQ0KR0xWLU5JVC1NLE5pdHJpbGUgZ2xvdmVzIChNKSwxMjAwDQpT
+WVItNU1MLFN5cmluZ2UgNSBtbCw4NDAwDQo=
+--b006-mix--

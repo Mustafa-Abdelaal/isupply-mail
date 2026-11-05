@@ -1,0 +1,25 @@
+# Local IMAP/SMTP server for development and integration tests. NOT for production.
+# Usage: scripts/dev-mail up | seed | reset | send | status | logs | down
+#
+# GreenMail: fast, resettable, IMAP4rev1 + IDLE/MOVE/UIDPLUS/SORT/QUOTA, SMTP AUTH PLAIN/LOGIN/XOAUTH2.
+# It does NOT implement CONDSTORE/QRESYNC/SPECIAL-USE/NAMESPACE/COMPRESS — sync-engine work that depends
+# on those needs an additional Dovecot profile (see infra/dev-mail/README.md).
+name: isupply-devmail
+
+services:
+  greenmail:
+    image: greenmail/standalone:2.1.3
+    environment:
+      GREENMAIL_OPTS: >-
+        -Dgreenmail.setup.test.all
+        -Dgreenmail.hostname=0.0.0.0
+        -Dgreenmail.users.login=email
+        -Dgreenmail.users=alice:alice-dev-pw@isupply.test,bob:bob-dev-pw@isupply.test,shared:shared-dev-pw@isupply.test
+      JAVA_OPTS: -Djava.net.preferIPv4Stack=true -Xmx256m
+    ports:
+      - "127.0.0.1:${DEV_MAIL_SMTP_PORT:-3025}:3025"
+      - "127.0.0.1:${DEV_MAIL_SMTPS_PORT:-3465}:3465"
+      - "127.0.0.1:${DEV_MAIL_IMAP_PORT:-3143}:3143"
+      - "127.0.0.1:${DEV_MAIL_IMAPS_PORT:-3993}:3993"
+      - "127.0.0.1:${DEV_MAIL_API_PORT:-3080}:8080"
+    restart: "no"

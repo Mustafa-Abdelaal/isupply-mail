@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# The quality gate. CI runs exactly this; run it before every commit and PR.
+#
+# Usage: scripts/check [--fast] [--changed] [--full]
+#   (default)  format check + lint + unit tests — everything that needs no external services
+#   --fast     quick subset used by the Claude Code Stop hook and the git pre-commit hook
+#   --changed  limit file-level checks to files changed vs origin/main (where supported)
+#   --full     also run integration tests against the local mail server (needs Docker)
+#
+# Exit code 0 = green. Never bypass a red gate; fix it or explain why in the PR.
+
+# shellcheck source=lib/common.sh
+source "$(dirname "$0")/lib/common.sh"
+
+FAST=0 CHANGED=0 FULL=0
+for arg in "$@"; do
+  case "$arg" in
+    --fast) FAST=1 ;;
+    --changed) CHANGED=1 ;;
+    --full) FULL=1 ;;
+    -h | --help) usage; exit 0 ;;
+    *) die "unknown option: $arg (see scripts/check --help)" ;;
+  esac
+done
+
+cd "$REPO_ROOT"
+fwd=()
+[ "$FAST" = 1 ] && fwd+=(--fast)
+[ "$CHANGED" = 1 ] && fwd+=(--changed)
+
+run_step "format" scripts/fmt --check ${fwd[@]+"${fwd[@]}"}
+run_step "lint" scripts/lint ${fwd[@]+"${fwd[@]}"}
+run_step "test" scripts/test ${fwd[@]+"${fwd[@]}"}
+
+if [ "$FULL" = 1 ]; then
+  integration() {
+    scripts/dev-mail up && scripts/dev-mail reset && scripts/test --integration-only
+  }
+  run_step "integration" integration
+fi
+
+finish_steps

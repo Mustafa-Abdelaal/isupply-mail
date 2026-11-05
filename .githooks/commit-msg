@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Git commit-msg hook: enforce Conventional Commits on the subject line.
+#   <type>(<scope>)!: <summary>   e.g.  feat(sync): add QRESYNC fast path
+# Types: feat fix refactor perf test docs build ci chore revert style wip
+set -u
+msg_file="$1"
+subject="$(sed -n '/^[^#]/{p;q;}' "$msg_file")"
+
+case "$subject" in
+  "Merge "* | "Revert "* | "fixup! "* | "squash! "* | "amend! "*) exit 0 ;;
+esac
+
+if ! printf '%s' "$subject" | grep -Eq '^(feat|fix|refactor|perf|test|docs|build|ci|chore|revert|style|wip)(\([a-z0-9._/,-]+\))?!?: .{1,100}$'; then
+  echo "commit-msg: the subject must follow Conventional Commits, e.g. 'feat(sync): add QRESYNC fast path'"
+  echo "            got: $subject"
+  exit 1
+fi
+exit 0

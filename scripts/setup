@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# One-time, idempotent developer setup. Safe to re-run at any time.
+#
+# Usage: scripts/setup [--quiet]
+#   1. points git at the repo's hooks (.githooks: secret scan, Conventional Commits)
+#   2. makes scripts and hooks executable
+#   3. STACK: installs application dependencies
+#   4. runs scripts/doctor
+#
+# Cloud sessions run this automatically from the Claude Code SessionStart hook.
+
+# shellcheck source=lib/common.sh
+source "$(dirname "$0")/lib/common.sh"
+
+QUIET=0
+for arg in "$@"; do
+  case "$arg" in
+    --quiet) QUIET=1 ;;
+    -h | --help) usage; exit 0 ;;
+    *) die "unknown option: $arg" ;;
+  esac
+done
+cd "$REPO_ROOT"
+
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  git config core.hooksPath .githooks
+  [ "$QUIET" = 1 ] || log_ok "git hooks path -> .githooks"
+fi
+
+chmod +x scripts/check scripts/lint scripts/test scripts/fmt scripts/dev scripts/dev-mail \
+  scripts/setup scripts/doctor scripts/github/*.sh .claude/hooks/*.sh .githooks/* 2>/dev/null || true
+
+install_app_deps() {
+  if ! stack_ready; then
+    [ "$QUIET" = 1 ] || no_stack_note "dependency install"
+    return 0
+  fi
+  # STACK: install dependencies here (must be idempotent and non-interactive), e.g.
+  #   flutter pub get   | pnpm install --frozen-lockfile   | cargo fetch   | composer install
+  log_warn "ADR-0002 is Accepted but dependency install is not wired yet — run /bootstrap-stack."
+}
+install_app_deps
+
+if [ "$QUIET" = 1 ]; then
+  scripts/doctor --quiet || true
+else
+  scripts/doctor || true
+fi

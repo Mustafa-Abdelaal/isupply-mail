@@ -1,0 +1,9 @@
+# Default owner for everything
+*                   @Mustafa-Abdelaal
+
+# Guardrails, CI, decisions and security docs always need owner review
+/.claude/           @Mustafa-Abdelaal
+/.github/           @Mustafa-Abdelaal
+/.githooks/         @Mustafa-Abdelaal
+/docs/decisions/    @Mustafa-Abdelaal
+/docs/security/     @Mustafa-Abdelaal

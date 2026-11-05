@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(scripts/check *)",
+      "Bash(./scripts/check *)",
+      "Bash(scripts/test *)",
+      "Bash(./scripts/test *)",
+      "Bash(scripts/lint *)",
+      "Bash(./scripts/lint *)",
+      "Bash(scripts/fmt *)",
+      "Bash(./scripts/fmt *)",
+      "Bash(scripts/doctor *)",
+      "Bash(./scripts/doctor *)",
+      "Bash(scripts/dev-mail *)",
+      "Bash(./scripts/dev-mail *)",
+      "Bash(python3 scripts/email/inspect_eml.py *)",
+      "Bash(python3 scripts/email/anonymize_eml.py *)",
+      "Bash(python3 scripts/email/discover.py *)",
+      "Bash(python3 scripts/email/probe_server.py *)",
+      "Bash(python3 scripts/agent/validate_config.py *)",
+      "Bash(python3 fixtures/email/generate_synthetic.py *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Bash(git branch --show-current *)",
+      "Bash(git switch -c *)",
+      "Bash(git checkout -b *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git fetch *)",
+      "Bash(git stash push *)",
+      "Bash(git stash list *)",
+      "Bash(git rev-parse *)",
+      "Bash(git merge-base *)",
+      "Bash(git restore --staged *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr diff *)",
+      "Bash(gh pr checks *)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr status *)",
+      "Bash(gh issue view *)",
+      "Bash(gh issue list *)",
+      "Bash(gh run view *)",
+      "Bash(gh run list *)",
+      "Bash(gh run watch *)",
+      "Bash(gh label list *)",
+      "Bash(gh release list *)",
+      "Bash(gh release view *)",
+      "Bash(jq *)",
+      "WebFetch(domain:www.rfc-editor.org)",
+      "WebFetch(domain:datatracker.ietf.org)",
+      "WebFetch(domain:code.claude.com)",
+      "WebFetch(domain:docs.github.com)"
+    ],
+    "ask": [
+      "Bash(gh pr merge *)",
+      "Bash(gh release create *)",
+      "Bash(gh release delete *)",
+      "Bash(gh issue close *)",
+      "Bash(gh pr close *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean *)",
+      "Bash(git branch -D *)",
+      "Bash(git push --delete *)",
+      "Bash(docker system prune *)",
+      "Bash(docker volume rm *)"
+    ],
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.local)",
+      "Read(**/.env.*.local)",
+      "Read(**/.env.production)",
+      "Read(**/.env.staging)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*.p12)",
+      "Read(**/*.pfx)",
+      "Read(**/*.jks)",
+      "Read(**/*.keystore)",
+      "Read(**/*.p8)",
+      "Read(**/*.mobileprovision)",
+      "Read(**/key.properties)",
+      "Read(**/secrets/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.config/gh/**)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(gh repo delete *)",
+      "Bash(gh secret *)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/session-start.sh\"",
+            "timeout": 600,
+            "statusMessage": "Loading iSupply Mail session context..."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard-bash.sh\"",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard-paths.sh\"",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/format-file.sh\"",
+            "timeout": 60
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/stop-verify.sh\"",
+            "timeout": 300,
+            "statusMessage": "Running the fast quality gate (scripts/check --fast)..."
+          }
+        ]
+      }
+    ]
+  }
+}

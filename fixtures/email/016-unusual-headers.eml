@@ -1,0 +1,12 @@
+from: Omar Farouk <omar.farouk@isupply.test>
+to: undisclosed-recipients:;
+subject: A very long subject line that was folded by the sending client because it
+ exceeded the recommended line length of seventy-eight characters
+ (RFC 5322 section 2.1.1)
+message-id: <20260207080000.016@isupply.test>
+mime-version: 1.0
+content-type: text/plain; charset=us-ascii
+
+No Date header, lowercase header names, an empty group address and a subject folded
+across three lines. Clients must unfold, fall back to the server INTERNALDATE for
+sorting, and show an empty recipient list without crashing.

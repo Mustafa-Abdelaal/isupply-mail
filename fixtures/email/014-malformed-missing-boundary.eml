@@ -1,0 +1,22 @@
+From: Karim Nabil <karim.nabil@isupply.test>
+To: Omar Farouk <omar.farouk@isupply.test>
+Subject: Scanned delivery note
+Date: Fri, 06 Feb 2026 12:30:00 +0200
+Message-ID: <20260206123000.014@isupply.test>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="b014-mix"
+
+This is a multi-part message in MIME format.
+
+--b014-mix
+
+Delivery note for order 4471 attached (this part has no headers, so it is text/plain us-ascii).
+
+--b014-mix
+Content-Type: application/pdf; name="delivery-note-4471.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="delivery-note-4471.pdf"
+
+JVBERi0xLjQKJSBzeW50aGV0aWMgZml4dHVyZSAtIG5vdCBhIHJlYWwgZG9jdW1lbnQKMSAwIG9i
+aiA8PCAvVHlwZSAvQ2F0YWxvZyA+PiBlbmRvYmoKdHJhaWxlciA8PCAvUm9vdCAxIDAgUiA+Pgol
+JUVPRgo=

@@ -1,0 +1,35 @@
+From: "Accounts Payable" <ap@vendor-invoices.example>
+To: accounts@isupply.test
+Subject: =?UTF-8?Q?Overdue_invoice_=E2=80=94_immediate_payment_required?=
+Date: Thu, 12 Feb 2026 06:30:00 +0200
+Message-ID: <x019@vendor-invoices.example>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="b019-mix"
+
+--b019-mix
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+Please see the attached invoice and pay today.
+
+--b019-mix
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename*=UTF-8''invoice-2026%E2%80%AEfdp.exe
+
+TVqQAHN5bnRoZXRpYyBmaXh0dXJlIC0gbm90IGV4ZWN1dGFibGUAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAA=
+--b019-mix
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="../../AppData/Roaming/evil.bat"
+
+QGVjaG8gc3ludGhldGljIGZpeHR1cmUgLSBub3QgYSByZWFsIHNjcmlwdA==
+--b019-mix
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="CON.txt"
+
+Windows reserved device name as a filename.
+
+--b019-mix--

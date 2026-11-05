@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# Formatter entrypoint. Agents and humans format through this, never by calling formatters directly.
+#
+# Usage: scripts/fmt [--check] [--fast] [--changed] [FILES...]
+#   --check   verify formatting without writing (CI / scripts/check)
+#   FILES     format only these files (default: whole repo, or changed files with --changed)
+#
+# Email fixtures (*.eml) are byte-exact test data and are never formatted.
+
+# shellcheck source=lib/common.sh
+source "$(dirname "$0")/lib/common.sh"
+
+CHECK=0 CHANGED=0
+FILES=()
+for arg in "$@"; do
+  case "$arg" in
+    --check) CHECK=1 ;;
+    --fast) ;;
+    --changed) CHANGED=1 ;;
+    -h | --help) usage; exit 0 ;;
+    -*) die "unknown option: $arg" ;;
+    *) FILES+=("$arg") ;;
+  esac
+done
+cd "$REPO_ROOT"
+
+if [ "${#FILES[@]}" -eq 0 ] && [ "$CHANGED" = 1 ]; then
+  while IFS= read -r f; do [ -n "$f" ] && FILES+=("$f"); done < <(changed_files)
+fi
+
+fmt_app() {
+  if ! stack_ready; then
+    no_stack_note "app formatting"
+    return 0
+  fi
+  # STACK: format (or with $CHECK=1, verify) application code here, e.g.
+  #   dart format ${CHECK:+--set-exit-if-changed --output=none} <paths>
+  #   pnpm exec prettier ${CHECK:+--check} ${CHECK:---write} <paths>
+  #   cargo fmt --all ${CHECK:+-- --check}  | vendor/bin/pint ${CHECK:+--test}
+  : "$CHECK" "${FILES[@]+"${FILES[@]}"}"
+  log_warn "ADR-0002 is Accepted but formatting is not wired yet — run /bootstrap-stack."
+  return 1
+}
+
+run_step "app format" fmt_app
+finish_steps

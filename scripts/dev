@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Run the app locally.
+#
+# Usage: scripts/dev [web|desktop|android|ios|server]
+#   web      web client dev server (prints the URL to open)
+#   desktop  desktop client for the current OS
+#   android  Android emulator/device build
+#   ios      iOS simulator build (macOS only)
+#   server   backend services (gateway / push relay / provisioning), if any
+#
+# Pair with `scripts/dev-mail up` so the app has a local IMAP/SMTP server with seeded mail.
+
+# shellcheck source=lib/common.sh
+source "$(dirname "$0")/lib/common.sh"
+
+target="${1:-}"
+case "$target" in -h | --help | "") usage; [ -n "$target" ] && exit 0; exit 2 ;; esac
+cd "$REPO_ROOT"
+
+if ! stack_ready; then
+  die "No application exists yet: the technology stack is $(stack_status) (docs/decisions/0002-technology-stack.md). Use scripts/dev-mail meanwhile."
+fi
+
+case "$target" in
+  web | desktop | android | ios | server)
+    # STACK: launch each target here, e.g.
+    #   web)     flutter run -d web-server --web-port 5173   | pnpm --filter web dev
+    #   desktop) flutter run -d "$(uname -s | tr A-Z a-z)"   | pnpm --filter desktop tauri dev
+    #   android) flutter run -d android                      | pnpm --filter mobile android
+    #   ios)     flutter run -d ios                          | pnpm --filter mobile ios
+    #   server)  php artisan serve                           | pnpm --filter server dev
+    die "scripts/dev $target is not wired yet — run /bootstrap-stack."
+    ;;
+  *) die "unknown target: $target (web|desktop|android|ios|server)" ;;
+esac

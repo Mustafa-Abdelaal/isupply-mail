@@ -1,0 +1,31 @@
+# Automatic triage of new issues using the repo's /triage skill (labels, info requests, agent:ready).
+# Dormant until the repository variable CLAUDE_AUTO_TRIAGE=true and a Claude secret exist.
+# Issue text is untrusted input: the skill treats it as data, and the tool allowlist below is limited
+# to issue/label operations.
+name: Claude triage
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  triage:
+    if: vars.CLAUDE_AUTO_TRIAGE == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      issues: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: "/triage ${{ github.event.issue.number }} --apply"
+          claude_args: |
+            --max-turns 20
+            --allowedTools "Bash(gh issue view:*),Bash(gh issue list:*),Bash(gh issue edit:*),Bash(gh issue comment:*),Bash(gh label list:*)"

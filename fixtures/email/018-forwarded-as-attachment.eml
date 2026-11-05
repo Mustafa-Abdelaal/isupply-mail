@@ -1,0 +1,30 @@
+From: Omar Farouk <omar.farouk@isupply.test>
+To: Sara Hassan <sara.hassan@isupply.test>
+Subject: Fwd: Customs clearance documents
+Date: Wed, 11 Feb 2026 13:30:00 +0200
+Message-ID: <20260211133000.018@isupply.test>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="b018-mix"
+
+--b018-mix
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Sara, forwarding the customs agent's message as an attachment.
+
+--b018-mix
+Content-Type: message/rfc822
+Content-Disposition: attachment; filename="Customs clearance documents.eml"
+
+From: Clearance Desk <desk@customs-agent.example>
+To: Omar Farouk <omar.farouk@isupply.test>
+Subject: Customs clearance documents
+Date: Wed, 11 Feb 2026 13:00:00 +0200
+Message-ID: <inner-018@customs-agent.example>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Dear Omar,
+The clearance documents for shipment ALX-2026-0042 are ready for pickup.
+
+--b018-mix--

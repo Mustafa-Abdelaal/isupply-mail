@@ -1,0 +1,35 @@
+From: MedSupply Weekly <newsletter@news.medsupply.example>
+To: omar.farouk@isupply.test
+Subject: This week: 20% off nitrile gloves
+Date: Wed, 11 Feb 2026 06:00:00 +0000
+Message-ID: <nl-2026-07.012@news.medsupply.example>
+List-Unsubscribe: <https://news.medsupply.example/u/abc123>, <mailto:unsubscribe@news.medsupply.example>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="b012-alt"
+
+--b012-alt
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+This week only: 20% off nitrile gloves. Shop: https://shop.medsupply.example/gloves
+
+--b012-alt
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><link rel=3D"stylesheet" href=3D"https://cdn.medsupply.example/=
+n.css"></head>
+<body><table background=3D"https://cdn.medsupply.example/bg.jpg" width=3D"6=
+00"><tr><td>
+<img src=3D"https://cdn.medsupply.example/hero.jpg" width=3D"600" alt=3D"20=
+% off nitrile gloves">
+<p>This week only: 20% off nitrile gloves.</p>
+<p><a href=3D"https://news.medsupply.example/c?u=3Dhttps%3A%2F%2Fshop.medsu=
+pply.example%2Fgloves&amp;utm_source=3Dnewsletter">Shop now</a></p>
+<div style=3D"background:url(https://cdn.medsupply.example/banner.png)">Fre=
+e delivery in Alexandria</div>
+<img src=3D"https://t.medsupply.example/open?id=3Dabc123" width=3D"1" heigh=
+t=3D"1" alt=3D"">
+</td></tr></table></body></html>
+--b012-alt--

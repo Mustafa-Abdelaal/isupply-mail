@@ -1,0 +1,36 @@
+# Automatic multi-agent PR review using the repo's /review-pr skill. Dormant until the repository
+# variable CLAUDE_AUTO_REVIEW=true and a Claude secret exist — see docs/agentic/README.md.
+name: Claude review
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
+
+jobs:
+  review:
+    if: >-
+      vars.CLAUDE_AUTO_REVIEW == 'true' &&
+      github.event.pull_request.draft == false &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      pull-requests: read
+      issues: read
+      id-token: write
+    concurrency:
+      group: claude-review-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: "/review-pr ${{ github.event.pull_request.number }} --post"
+          claude_args: |
+            --max-turns 40
+            --allowedTools "Bash(gh pr view:*),Bash(gh pr diff:*),Bash(gh pr comment:*),Bash(gh issue view:*),Bash(git fetch:*),Bash(git diff:*),Bash(git log:*),Bash(scripts/check:*),Bash(scripts/test:*)"

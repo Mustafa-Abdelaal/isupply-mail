@@ -1,0 +1,11 @@
+# Lint config for repo tooling (scripts/, fixtures/email/generate_synthetic.py). Pinned here so results
+# never depend on a developer's global ruff configuration. Python 3.9+ standard library only.
+target-version = "py39"
+line-length = 160
+
+[lint]
+select = ["E", "F", "W", "B"]
+ignore = [
+  "E501",  # long lines are fine for data-heavy fixture definitions and test tables
+  "E402",  # tests insert scripts/email onto sys.path before importing tools
+]

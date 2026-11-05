@@ -1,0 +1,65 @@
+name: Agent-ready task
+description: A fully specified, vertically sliced task an AI agent can implement end-to-end (/implement N)
+title: "task: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Write this so an agent with no prior context can finish it. Created automatically by `/breakdown`;
+        add the `agent:ready` label once nothing is ambiguous.
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Why this matters. Link the spec (with AC IDs), ADRs and docs/domain pages.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What to build in this slice.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Testable, numbered (Given / When / Then).
+      placeholder: "- AC-1 Given ... When ... Then ...\n- AC-2 ..."
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+  - type: checkboxes
+    id: platforms
+    attributes:
+      label: Platforms
+      options:
+        - label: Web
+        - label: Windows
+        - label: macOS
+        - label: Linux
+        - label: Android
+        - label: iOS
+        - label: Backend
+        - label: Repo / tooling only
+  - type: textarea
+    id: areas
+    attributes:
+      label: Likely files / areas
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+      description: Exact commands, fixtures to add or use, screenshots required.
+      placeholder: "scripts/test -k threading\nscripts/check --full\nnew fixture: ..."
+    validations:
+      required: true
+  - type: input
+    id: depends
+    attributes:
+      label: Blocked by
+      placeholder: "#12, #14"

@@ -1,0 +1,61 @@
+# ---------------------------------------------------------------------------
+# Secrets — never commit. (Agents are also denied read access in .claude/settings.json.)
+# ---------------------------------------------------------------------------
+.env
+.env.local
+.env.*.local
+.env.production
+.env.staging
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.p8
+*.mobileprovision
+key.properties
+secrets/
+
+# ---------------------------------------------------------------------------
+# Real email data. Only synthetic or anonymized fixtures under fixtures/email/
+# may be committed (see fixtures/email/README.md).
+# ---------------------------------------------------------------------------
+*.eml
+!fixtures/email/**/*.eml
+*.mbox
+*.pst
+*.ost
+*.msg
+
+# ---------------------------------------------------------------------------
+# Agent / personal configuration
+# ---------------------------------------------------------------------------
+CLAUDE.local.md
+.claude/settings.local.json
+.claude/worktrees/
+.claude/*.log
+
+# ---------------------------------------------------------------------------
+# Local artifacts and OS/editor noise
+# ---------------------------------------------------------------------------
+.scratch/
+tmp/
+*.log
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# ---------------------------------------------------------------------------
+# STACK: application build outputs are added here by /bootstrap-stack
+# (e.g. build/, dist/, .dart_tool/, node_modules/, target/, android/.gradle/).
+# ---------------------------------------------------------------------------

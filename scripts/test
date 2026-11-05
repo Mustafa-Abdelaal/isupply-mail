@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+# Test runner: repo tooling + hooks + fixture conformance always; app tests via STACK wiring.
+#
+# Usage: scripts/test [--fast] [--changed] [--integration | --integration-only] [-k PATTERN]
+#   --fast              skip slow suites (STACK: e.g. widget/e2e tests)
+#   --integration       also run tests that need the local mail server (scripts/dev-mail up)
+#   --integration-only  run only those integration tests
+#   -k PATTERN          only run tests whose name matches PATTERN (passed to each runner)
+
+# shellcheck source=lib/common.sh
+source "$(dirname "$0")/lib/common.sh"
+
+FAST=0 INTEGRATION=0 ONLY_INTEGRATION=0 PATTERN=""
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --fast) FAST=1 ;;
+    --changed) ;;
+    --integration) INTEGRATION=1 ;;
+    --integration-only) INTEGRATION=1 ONLY_INTEGRATION=1 ;;
+    -k)
+      shift
+      PATTERN="${1:-}"
+      ;;
+    -h | --help) usage; exit 0 ;;
+    *) die "unknown option: $1" ;;
+  esac
+  shift
+done
+cd "$REPO_ROOT"
+require_python
+export PYTHONDONTWRITEBYTECODE=1
+
+unittest_args() {
+  printf '%s\n' -m unittest discover -s scripts/tests -p 'test_*.py'
+  [ -n "$PATTERN" ] && printf '%s\n' -k "$PATTERN"
+  return 0
+}
+
+test_tooling() {
+  local args=()
+  while IFS= read -r a; do args+=("$a"); done < <(unittest_args)
+  ISUPPLY_INTEGRATION=0 "$PY" "${args[@]}"
+}
+
+test_integration() {
+  local args=()
+  while IFS= read -r a; do args+=("$a"); done < <(unittest_args)
+  if [ -z "$PATTERN" ]; then args+=(-k integration); fi
+  ISUPPLY_INTEGRATION=1 "$PY" "${args[@]}"
+}
+
+test_app() {
+  if ! stack_ready; then
+    no_stack_note "app tests"
+    return 0
+  fi
+  # STACK: run the application's test suites here (respect $FAST and $PATTERN), e.g.
+  #   flutter test ${PATTERN:+--name "$PATTERN"}   | pnpm -r test ${PATTERN:+-t "$PATTERN"}
+  #   cargo test ${PATTERN:+"$PATTERN"}            | php artisan test ${PATTERN:+--filter="$PATTERN"}
+  # Also run the fixture conformance suite against the app's MIME layer (see fixtures/email/README.md).
+  : "$FAST"
+  log_warn "ADR-0002 is Accepted but app tests are not wired yet — run /bootstrap-stack."
+  return 1
+}
+
+if [ "$ONLY_INTEGRATION" = 0 ]; then
+  run_step "tooling + hooks + fixtures" test_tooling
+  run_step "app" test_app
+fi
+if [ "$INTEGRATION" = 1 ]; then
+  run_step "integration (dev mail server)" test_integration
+fi
+finish_steps

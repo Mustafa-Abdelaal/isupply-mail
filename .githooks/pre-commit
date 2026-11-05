@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# Git pre-commit hook (enabled by scripts/setup via core.hooksPath=.githooks).
+#   1. refuses real email/mailbox files outside fixtures/email/
+#   2. refuses likely secrets in the staged changes
+#   3. refuses files larger than 5 MB
+#   4. runs the fast quality gate (skip only this step with ISUPPLY_SKIP_PRECOMMIT_GATE=1)
+# Never bypass with --no-verify; fix the cause instead.
+set -u
+root="$(git rev-parse --show-toplevel)" || exit 0
+cd "$root" || exit 0
+
+staged="$(git diff --cached --name-only --diff-filter=ACM)"
+[ -z "$staged" ] && exit 0
+fail=0
+
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  case "$f" in
+    fixtures/email/*) ;;
+    *.eml | *.mbox | *.pst | *.ost | *.msg)
+      echo "pre-commit: refusing to commit email data file '$f' — only anonymized fixtures under fixtures/email/ are allowed."
+      fail=1
+      ;;
+  esac
+  if [ -f "$f" ]; then
+    size="$(wc -c <"$f" | tr -d ' ')"
+    if [ "$size" -gt 5242880 ]; then
+      echo "pre-commit: '$f' is larger than 5 MB — large binaries do not belong in git."
+      fail=1
+    fi
+  fi
+done <<EOF
+$staged
+EOF
+
+secret_re='-----BEGIN ([A-Z]+ )?PRIVATE KEY-----|AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|sk-ant-[A-Za-z0-9_-]{20,}|xox[abprs]-[A-Za-z0-9-]{10,}|AIza[0-9A-Za-z_-]{35}'
+hits="$(git diff --cached -U0 --diff-filter=ACM -- . ':(exclude).githooks/*' |
+  awk '/^\+\+\+ b\//{file=substr($0,7)} /^\+[^+]/{print file}' |
+  sort -u | while IFS= read -r file; do
+    git diff --cached -U0 -- "$file" | grep -E '^\+[^+]' | grep -Eq -- "$secret_re" && printf '%s\n' "$file"
+  done)"
+if [ -n "$hits" ]; then
+  echo "pre-commit: possible secret (private key / API token) in staged changes:"
+  printf '  %s\n' $hits
+  echo "Remove it, rotate it if it was real, and keep secrets in secure storage or CI secrets."
+  fail=1
+fi
+
+[ "$fail" -ne 0 ] && exit 1
+
+if [ "${ISUPPLY_SKIP_PRECOMMIT_GATE:-0}" != "1" ] && [ -x scripts/check ]; then
+  if ! scripts/check --fast --changed >/tmp/isupply-precommit.log 2>&1; then
+    tail -n 40 /tmp/isupply-precommit.log
+    echo "pre-commit: scripts/check --fast failed — fix it (full log: /tmp/isupply-precommit.log)."
+    exit 1
+  fi
+fi
+exit 0

@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Quality gate (same command agents and humans run)
+        run: scripts/check
+
+  integration:
+    name: integration (dev mail server)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - name: Start GreenMail
+        run: scripts/dev-mail up
+      - name: Seed fixtures
+        run: scripts/dev-mail reset
+      - name: Integration tests
+        run: scripts/test --integration-only
+      - name: Server logs
+        if: failure()
+        run: scripts/dev-mail logs
+
+  actionlint:
+    name: actionlint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+      - uses: docker://rhysd/actionlint:1.7.7
+        with:
+          args: -color
+
+  # STACK: /bootstrap-stack adds per-platform build/test jobs here (web, windows, macos+ios, linux, android),
+  # each calling the stable scripts (scripts/test, scripts/dev build targets) rather than ad-hoc commands.

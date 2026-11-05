@@ -1,0 +1,11 @@
+From: Sara Hassan <sara.hassan@isupply.test>
+To: Karim Nabil <karim.nabil@isupply.test>
+Subject: Saved by a Unix tool (LF line endings)
+Date: Fri, 06 Feb 2026 15:00:00 +0200
+Message-ID: <20260206150000.015@isupply.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+This message uses bare LF line endings, as written by many Unix tools and some
+export features. Parsers must accept it; our client must never send it.

@@ -1,0 +1,62 @@
+From: Omar Farouk <omar.farouk@isupply.test>
+To: Mona Adel <mona.adel@isupply.test>
+Subject: Signed supply agreement
+Date: Thu, 05 Feb 2026 09:10:00 +0200
+Message-ID: <DB9PR01MB0001.007@isupply.test>
+X-Mailer: Synthetic Outlook-style generator
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="b007-mix"
+
+--b007-mix
+Content-Type: multipart/related; boundary="b007-rel"; type="multipart/alternative"
+
+--b007-rel
+Content-Type: multipart/alternative; boundary="b007-alt"
+
+--b007-alt
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hi Mona,
+
+Attached is the signed supply agreement.
+
+Omar Farouk
+Procurement | iSupply
+
+--b007-alt
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office"><head><meta http-=
+equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"><style><!-=
+- p.MsoNormal {margin:0cm; font-size:11.0pt; font-family:"Calibri",sans-ser=
+if;} --></style></head><body lang=3D"EN-US"><div class=3D"WordSection1"><p =
+class=3D"MsoNormal">Hi Mona,<o:p></o:p></p><p class=3D"MsoNormal">Attached =
+is the signed supply agreement.<o:p></o:p></p><p class=3D"MsoNormal"><img w=
+idth=3D"96" height=3D"32" src=3D"cid:image001.png@01DC7A2B.5E8F1C30" alt=3D=
+"iSupply"><o:p></o:p></p><p class=3D"MsoNormal">Omar Farouk<br>Procurement =
+| iSupply<o:p></o:p></p></div></body></html>
+--b007-alt--
+
+--b007-rel
+Content-Type: image/png; name="image001.png"
+Content-Description: image001.png
+Content-Disposition: inline; filename="image001.png"
+Content-ID: <image001.png@01DC7A2B.5E8F1C30>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAD0lEQVR4AQEEAPv/AMwAMwKbAQC6
+L8JYAAAAAElFTkSuQmCC
+--b007-rel--
+
+--b007-mix
+Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document;
+ name="Supply Agreement 2026 (signed).docx"
+Content-Description: Supply Agreement 2026 (signed).docx
+Content-Disposition: attachment; filename="Supply Agreement 2026 (signed).docx"
+Content-Transfer-Encoding: base64
+
+UEsDBBQAAAAAAHN5bnRoZXRpYy1vZmZpY2UtZG9jdW1lbnQtcGxhY2Vob2xkZXIAAAAAAAAAAAAA
+AAAAAAAA
+--b007-mix--
